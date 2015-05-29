@@ -1,5 +1,8 @@
 <?php
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 require "vendor/autoload.php";
 
 //server ip 93.92.242.205:80
@@ -10,12 +13,6 @@ $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 
 
-$app->get('/test', function() use ($app) {
-
-        $app->render(200,array(
-                'msg' => 'Test action',
-            ));
-});
 
 $app->post('/execute/sold/store', function() use ($app) {
 
@@ -40,10 +37,8 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 		  $post = $app->request->post();
 
-		  //concatenare i parametri;
-		  //$concat = implode('~', $post);
+      $log = getLogger('executePlaceOrder');
 
-		  //$concat_json = json_encode($post);
 
 
 			$order = '{
@@ -92,13 +87,20 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 		  exec("WebOrder.exe $str_concat");
 
+      $log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
+
 		  $app->render(200,array(
 		                //'msg' => "File started: $data",
 		                'msg' => $str_concat,
 		            ));
 		    });
 
+        $app->get('/test', function() use ($app) {
 
+                $app->render(200,array(
+                        'msg' => 'Test action',
+                    ));
+        });
 
 $app->get('/', function() use ($app) {
 
@@ -106,6 +108,14 @@ $app->get('/', function() use ($app) {
                 'msg' => 'Getting action',
             ));
     });
+
+
+    function getLogger($name) {
+      $log = new Logger($name);
+      $log->pushHandler(new StreamHandler('./dev.log', Logger::DEBUG));
+
+      return $log;
+    }
 
 $app->run();
 
