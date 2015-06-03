@@ -33,7 +33,7 @@ $app->post('/execute/sold/store', function() use ($app) {
     });
 
 
-		$app->get('/execute/place/order', function() use ($app) {
+		$app->post('/execute/place/order', function() use ($app) {
 
 		  $post = $app->request->post();
 
