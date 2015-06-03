@@ -39,7 +39,9 @@ $app->post('/execute/sold/store', function() use ($app) {
 
       $log = getLogger('executePlaceOrder');
 
-      $order = $post['order'];
+
+
+      //$order = $post['order'];
 
 			// $order = '{
 			// 								"order_number": "1001",
@@ -72,30 +74,31 @@ $app->post('/execute/sold/store', function() use ($app) {
 			// 					}';
 
 
-      var_dump(file_get_contents("php://input"));
+      //var_dump(file_get_contents("php://input"));
 
-			$order_array = json_decode($order, true);
-
-			$str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] ."~";
-
-			foreach ($order_array['items'] as $item) {
-
-				foreach ($item as $key=>$value) {
-
-					$str_concat .= $value . "~";
-				}
-
-			}
+			// $order_array = json_decode($order, true);
+      //
+			// $str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] ."~";
+      //
+			// foreach ($order_array['items'] as $item) {
+      //
+			// 	foreach ($item as $key=>$value) {
+      //
+			// 		$str_concat .= $value . "~";
+			// 	}
+      //
+			// }
 
 		  //exec("WebOrder.exe $str_concat");
-      exec("ElabSeco.bat $str_concat");
+      //exec("ElabSeco.bat $str_concat");
 
 
-      $log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
+      //$log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
 
 		  $app->render(200,array(
 		                //'msg' => "File started: $data",
-		                'msg' => $str_concat,
+		                //'msg' => $str_concat,
+                    'post' => file_get_contents("php://input") 
 		            ));
 		    });
 
