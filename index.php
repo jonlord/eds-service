@@ -39,7 +39,7 @@ $app->post('/execute/sold/store', function() use ($app) {
 
       $log = getLogger('executePlaceOrder');
 
-      $order = json_decode($post, true);
+      $order = file_get_contents("php://input");
 
       //$order = $post['order'];
 
@@ -98,7 +98,7 @@ $app->post('/execute/sold/store', function() use ($app) {
 		  $app->render(200,array(
 		                //'msg' => "File started: $data",
 		                //'msg' => $str_concat,
-                    'post' => $order
+                    'post' => json_decode($order);
 		            ));
 		    });
 
