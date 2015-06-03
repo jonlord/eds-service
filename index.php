@@ -37,11 +37,11 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 		  $post = $app->request->post();
 
-      var_dump($post);
-
       $log = getLogger('executePlaceOrder');
 
-      $order = file_get_contents("php://input");
+      $a = 'a';
+
+      //$order = file_get_contents("php://input");
 
       //$order = $post['order'];
 
@@ -100,7 +100,8 @@ $app->post('/execute/sold/store', function() use ($app) {
 		  $app->render(200,array(
 		                //'msg' => "File started: $data",
 		                //'msg' => $str_concat,
-                    'post' => json_decode($post);
+                    'test' = $a;
+                    'msg' => $post;
 		            ));
 		    });
 
