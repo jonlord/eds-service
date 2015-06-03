@@ -39,37 +39,37 @@ $app->post('/execute/sold/store', function() use ($app) {
 
       $log = getLogger('executePlaceOrder');
 
+      $order = $post['order'];
 
-
-			$order = '{
-											"order_number": "1001",
-											"date": "2015-05-20",
-											"items_count": "3",
-											"items": [{
-											"sku_id": "1",
-											"product_reference": "XXX",
-											"color_reference": "XXX",
-											"quantity": "1",
-											"size": "XXX",
-											"purchase_price": "XXX"
-											},
-											{
-											"sku_id": "2",
-											"product_reference": "XXX",
-											"color_reference": "XXX",
-											"quantity": "1",
-											"size": "XXX",
-											"purchase_price": "XXX"
-											},
-									{
-									"sku_id": "3",
-									"product_reference": "XXX",
-									"color_reference": "XXX",
-									"quantity": "1",
-									"size": "XXX",
-									"purchase_price": "XXX"
-									}]
-								}';
+			// $order = '{
+			// 								"order_number": "1001",
+			// 								"date": "2015-05-20",
+			// 								"items_count": "3",
+			// 								"items": [{
+			// 								"sku_id": "1",
+			// 								"product_reference": "XXX",
+			// 								"color_reference": "XXX",
+			// 								"quantity": "1",
+			// 								"size": "XXX",
+			// 								"purchase_price": "XXX"
+			// 								},
+			// 								{
+			// 								"sku_id": "2",
+			// 								"product_reference": "XXX",
+			// 								"color_reference": "XXX",
+			// 								"quantity": "1",
+			// 								"size": "XXX",
+			// 								"purchase_price": "XXX"
+			// 								},
+			// 						{
+			// 						"sku_id": "3",
+			// 						"product_reference": "XXX",
+			// 						"color_reference": "XXX",
+			// 						"quantity": "1",
+			// 						"size": "XXX",
+			// 						"purchase_price": "XXX"
+			// 						}]
+			// 					}';
 
 
 			$order_array = json_decode($order, true);
