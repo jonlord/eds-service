@@ -39,7 +39,7 @@ $app->post('/execute/sold/store', function() use ($app) {
 
       $log = getLogger('executePlaceOrder');
 
-      $order = $post;
+      $order = json_decode($post['post'], true);
 
       //$order = $post['order'];
 
