@@ -104,8 +104,7 @@ $app->post('/execute/sold/store', function() use ($app) {
     //
 
     $app->render(200,array(
-      'msg' => $post,
-      'result' => $str_concat
+      'msg' => $str_concat, 
     ));
 
 		});
