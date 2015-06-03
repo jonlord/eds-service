@@ -92,7 +92,7 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 
     $app->render(200,array(
-      'msg' => $str_concat,
+      'msg' => "Order placed successfully with " . $str_concat,
     ));
 
 		});
