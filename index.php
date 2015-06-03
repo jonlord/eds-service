@@ -35,6 +35,12 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 		$app->post('/execute/place/order', function() use ($app) {
 
+      $post = $app->request->post();
+
+      $app->render(200,array(
+        'msg' => $post
+      ));
+
     //
 		//   $post = $app->request->post();
     //
@@ -98,12 +104,7 @@ $app->post('/execute/sold/store', function() use ($app) {
     //
     //   //$log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
     //
-		  $app->render(200,array(
-		                //'msg' => "File started: $data",
-		                //'msg' => $str_concat,
-                    'test' = $a,
-                    'msg' => $post,
-		            ));
+
 		});
 
         $app->get('/test', function() use ($app) {
