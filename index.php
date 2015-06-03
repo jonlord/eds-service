@@ -72,6 +72,8 @@ $app->post('/execute/sold/store', function() use ($app) {
 			// 					}';
 
 
+      var_dump(file_get_contents("php://input"));
+
 			$order_array = json_decode($order, true);
 
 			$str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] ."~";
