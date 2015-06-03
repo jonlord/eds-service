@@ -37,6 +37,8 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 		  $post = $app->request->post();
 
+      var_dump($post);
+
       $log = getLogger('executePlaceOrder');
 
       $order = file_get_contents("php://input");
