@@ -50,35 +50,35 @@ $app->post('/execute/sold/store', function() use ($app) {
     //
     $order = $post['order'];
     //
-		// 	// $order = '{
-		// 	// 								"order_number": "1001",
-		// 	// 								"date": "2015-05-20",
-		// 	// 								"items_count": "3",
-		// 	// 								"items": [{
-		// 	// 								"sku_id": "1",
-		// 	// 								"product_reference": "XXX",
-		// 	// 								"color_reference": "XXX",
-		// 	// 								"quantity": "1",
-		// 	// 								"size": "XXX",
-		// 	// 								"purchase_price": "XXX"
-		// 	// 								},
-		// 	// 								{
-		// 	// 								"sku_id": "2",
-		// 	// 								"product_reference": "XXX",
-		// 	// 								"color_reference": "XXX",
-		// 	// 								"quantity": "1",
-		// 	// 								"size": "XXX",
-		// 	// 								"purchase_price": "XXX"
-		// 	// 								},
-		// 	// 						{
-		// 	// 						"sku_id": "3",
-		// 	// 						"product_reference": "XXX",
-		// 	// 						"color_reference": "XXX",
-		// 	// 						"quantity": "1",
-		// 	// 						"size": "XXX",
-		// 	// 						"purchase_price": "XXX"
-		// 	// 						}]
-		// 	// 					}';
+			$order1 = '{
+											"order_number": "1001",
+											"date": "2015-05-20",
+											"items_count": "3",
+											"items": [{
+											"sku_id": "1",
+											"product_reference": "XXX",
+											"color_reference": "XXX",
+											"quantity": "1",
+											"size": "XXX",
+											"purchase_price": "XXX"
+											},
+											{
+											"sku_id": "2",
+											"product_reference": "XXX",
+											"color_reference": "XXX",
+											"quantity": "1",
+											"size": "XXX",
+											"purchase_price": "XXX"
+											},
+									{
+									"sku_id": "3",
+									"product_reference": "XXX",
+									"color_reference": "XXX",
+									"quantity": "1",
+									"size": "XXX",
+									"purchase_price": "XXX"
+									}]
+								}';
     //
     //
     //   //var_dump(file_get_contents("php://input"));
@@ -86,7 +86,7 @@ $app->post('/execute/sold/store', function() use ($app) {
 		$order_array = json_decode($order, true);
 
 		$str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] ."~";
-    
+
 			foreach ($order_array['items'] as $item) {
 
 				foreach ($item as $key=>$value) {
@@ -104,7 +104,8 @@ $app->post('/execute/sold/store', function() use ($app) {
     //
 
     $app->render(200,array(
-      'msg' => $post
+      'msg' => $post,
+      'result' => $str_concat
     ));
 
 		});
