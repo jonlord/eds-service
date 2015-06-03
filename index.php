@@ -33,7 +33,16 @@ $app->post('/execute/sold/store', function() use ($app) {
     });
 
 
-		// $app->post('/execute/place/order', function() use ($app) {
+		$app->post('/execute/place/order', function() use ($app) {
+
+
+      $app->render(200,array(
+  		                 //'msg' => "File started: $data",
+  		                 //'msg' => $str_concat,
+                       'test' = $a;
+                      'msg' => $post;
+  		            ));
+
     //
 		//   $post = $app->request->post();
     //
@@ -103,7 +112,7 @@ $app->post('/execute/sold/store', function() use ($app) {
     //                 'test' = $a;
     //                 'msg' => $post;
 		//             ));
-		//     });
+		});
 
         $app->get('/test', function() use ($app) {
 
