@@ -98,7 +98,7 @@ $app->post('/execute/sold/store', function() use ($app) {
 		  $app->render(200,array(
 		                //'msg' => "File started: $data",
 		                //'msg' => $str_concat,
-                    'post' => json_decode($order);
+                    'post' => json_decode($post);
 		            ));
 		    });
 
