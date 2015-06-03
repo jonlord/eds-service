@@ -85,10 +85,10 @@ $app->post('/execute/sold/store', function() use ($app) {
 			}
 
 		//exec("WebOrder.exe $str_concat");
-    //exec("ElabSeco.bat $str_concat");
+    exec("ElabSeco.bat $str_concat");
 
 
-    //$log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
+    $log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
 
 
     $app->render(200,array(
