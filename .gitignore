@@ -2,5 +2,5 @@ composer.phar
 vendor/
 dev.log
 *.bat
-*:exe
+*.exe
 *.ini
