@@ -35,6 +35,8 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 		$app->post('/execute/place/order', function() use ($app) {
 
+set_time_limit(10);
+
       $post = $app->request->post();
 
     $log = getLogger('executePlaceOrder');
@@ -84,16 +86,12 @@ $app->post('/execute/sold/store', function() use ($app) {
 
 			}
 
-<<<<<<< HEAD
-		//shell_exec("WebOrder.exe $str_concat > NUL 2>&1");
-	//shell_exec("WebOrder.exe $str_concat");
+      $log->addNotice('Init WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
 
-    shell_exec("putorder.bat $str_concat");
-=======
-		//exec("WebOrder.exe $str_concat");
+
+		//shell_exec("WebOrder.exe $str_concat");
     //exec("ElabSeco.bat $str_concat");
     exec("putOrder.bat $str_concat");
->>>>>>> bd10d970f0c1576d991b578ed0bc6b6b98fd742d
 
 
     $log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
