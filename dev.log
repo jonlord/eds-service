@@ -1,3 +1,4 @@
+
 [2015-06-03 08:40:14] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-06-03~1~PBJE602VC2557~1144~1~L~415.25~2~PBPA139CC2201~01~1~50~405.80~3~PBCM390CS2205~186~1~41~350~ at 2015/06/03 08:40:14am [] []
 [2015-06-03 08:55:31] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-06-03~1~09039100~1130~1~03~415.25~2~09039100~1130~1~04~405.80~ at 2015/06/03 08:55:31am [] []
 [2015-06-03 09:11:35] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-06-03~285~09039100~1130~1~03~415.25~286~09039100~1130~1~04~405.80~ at 2015/06/03 09:11:35am [] []
@@ -9,3 +10,14 @@
 [2015-06-19 03:31:49] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~09039100~1130~1~XS~259~ at 2015/06/19 03:31:49am [] []
 [2015-06-19 03:33:22] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~09039100~1130~1~XS~259~ at 2015/06/19 03:33:22am [] []
 [2015-06-19 03:37:26] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~09039100~1130~1~FEDE~259~ at 2015/06/19 03:37:26am [] []
+
+[2015-05-29 15:57:07] executePlaceOrder.WARNING: Foo [] []
+[2015-05-29 15:57:07] executePlaceOrder.ERROR: Bar [] []
+[2015-05-29 16:00:59] executePlaceOrder.ERROR: Bar [] []
+[2015-05-29 16:04:45] executePlaceOrder.NOTICE: Execute WebOrder with ~1~XXX~XXX~1~XXX~XXX~2~XXX~XXX~1~XXX~XXX~3~XXX~XXX~1~XXX~XXX~ [] []
+[2015-05-29 16:08:15] executePlaceOrder.NOTICE: Execute WebOrder with ~1~XXX~XXX~1~XXX~XXX~2~XXX~XXX~1~XXX~XXX~3~XXX~XXX~1~XXX~XXX~ at 2015/05/29 04:08:15pm [] []
+[2015-06-19 00:19:48] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~XXX~XXX~1~XXX~XXX~ at 2015/06/19 12:19:48am [] []
+[2015-06-19 00:24:32] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~XXX~XXX~1~XXX~XXX~ at 2015/06/19 12:24:32am [] []
+[2015-06-19 00:25:11] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~XXX~XXX~1~XXX~XXX~ at 2015/06/19 12:25:11am [] []
+[2015-06-19 00:28:24] executePlaceOrder.NOTICE: Execute WebOrder with ~1001~2015-05-20~285~XXX~XXX~1~XXX~XXX~ at 2015/06/19 12:28:24am [] []
+
