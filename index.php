@@ -5,7 +5,9 @@ use Monolog\Handler\StreamHandler;
 
 require "vendor/autoload.php";
 
-//server ip 93.92.242.205:80
+//server
+//93.92.242.205:80
+//http://eds-7.eds-tema.it/eds-service/
 
 $app = new \Slim\Slim();
 
@@ -13,83 +15,95 @@ $app->view(new \JsonApiView());
 $app->add(new \JsonApiMiddleware());
 
 
+$app->get('/sizes/:id/range', function ($id) use ($app) {
 
-$app->post('/execute/sold/store', function() use ($app) {
+    exec("GetSizesByRange.exe $id");
 
-  $post = $app->request->post();
+    $content = file_get_contents('GetSizesByRange.csv');
 
-  //concatenare i parametri;
-  $concat = implode('~', $post);
-	$concat = $concat . "~";
-
-  $concat_json = json_encode($post);
-
-  exec("WebGiac.exe $concat");
-
-  $app->render(200,array(
-                //'msg' => "File started: $data",
-                'msg' => $concat,
-            ));
-    });
+    $app->render(200, array(
+        //'msg' => "File started: $data",
+        'msg' => $content,
+    ));
+});
 
 
-		$app->post('/execute/place/order', function() use ($app) {
+$app->post('/execute/sold/store', function () use ($app) {
 
-set_time_limit(10);
+    $post = $app->request->post();
 
-      $post = $app->request->post();
+    //concatenare i parametri;
+    $concat = implode('~', $post);
+    $concat = $concat . "~";
+
+    $concat_json = json_encode($post);
+
+    exec("WebGiac.exe $concat");
+
+    $app->render(200, array(
+        //'msg' => "File started: $data",
+        'msg' => $concat,
+    ));
+});
+
+
+$app->post('/execute/place/order', function () use ($app) {
+
+    set_time_limit(10);
+
+    $post = $app->request->post();
 
     $log = getLogger('executePlaceOrder');
 
     $order = $post['order'];
 
-			// $order1 = '{
-			// 								"order_number": "1001",
-			// 								"date": "2015-05-20",
-			// 								"items_count": "3",
-			// 								"items": [{
-			// 								"sku_id": "1",
-			// 								"product_reference": "XXX",
-			// 								"color_reference": "XXX",
-			// 								"quantity": "1",
-			// 								"size": "XXX",
-			// 								"purchase_price": "XXX"
-			// 								},
-			// 								{
-			// 								"sku_id": "2",
-			// 								"product_reference": "XXX",
-			// 								"color_reference": "XXX",
-			// 								"quantity": "1",
-			// 								"size": "XXX",
-			// 								"purchase_price": "XXX"
-			// 								},
-			// 						{
-			// 						"sku_id": "3",
-			// 						"product_reference": "XXX",
-			// 						"color_reference": "XXX",
-			// 						"quantity": "1",
-			// 						"size": "XXX",
-			// 						"purchase_price": "XXX"
-			// 						}]
-			// 					}';
+    // $order1 = '{
+    // 								"order_number": "1001",
+    // 								"date": "2015-05-20",
+    // 								"items_count": "3",
+    // 								"items": [{
+    // 								"sku_id": "1",
+    // 								"product_reference": "XXX",
+    // 								"color_reference": "XXX",
+    // 								"quantity": "1",
+    // 								"size": "XXX",
+    // 								"purchase_price": "XXX"
+    // 								},
+    // 								{
+    // 								"sku_id": "2",
+    // 								"product_reference": "XXX",
+    // 								"color_reference": "XXX",
+    // 								"quantity": "1",
+    // 								"size": "XXX",
+    // 								"purchase_price": "XXX"
+    // 								},
+    // 						{
+    // 						"sku_id": "3",
+    // 						"product_reference": "XXX",
+    // 						"color_reference": "XXX",
+    // 						"quantity": "1",
+    // 						"size": "XXX",
+    // 						"purchase_price": "XXX"
+    // 						}]
+    // 					}';
 
-		$order_array = json_decode($order, true);
+    $order_array = json_decode($order, true);
 
-		$str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] ."~";
+    $str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] . "~";
 
-			foreach ($order_array['items'] as $item) {
+    foreach ($order_array['items'] as $item) {
 
-				foreach ($item as $key=>$value) {
+        foreach ($item as $key => $value) {
 
-					$str_concat .= $value . "~";
-				}
+            $str_concat .= $value . "~";
+        }
 
-			}
+    }
 
-      $log->addNotice('Init WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
+    $log->addNotice('Init WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
 
 
-		//shell_exec("WebOrder.exe $str_concat");
+    //shell_exec("WebOrder.exe $str_concat");
     //exec("ElabSeco.bat $str_concat");
     exec("putOrder.bat $str_concat");
 
@@ -97,33 +111,34 @@ set_time_limit(10);
     $log->addNotice('Execute WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
 
 
-    $app->render(200,array(
-      'msg' => "Order placed successfully with " . $str_concat,
+    $app->render(200, array(
+        'msg' => "Order placed successfully with " . $str_concat,
     ));
 
-		});
+});
 
-        $app->get('/test', function() use ($app) {
+$app->get('/test', function () use ($app) {
 
-                $app->render(200,array(
-                        'msg' => 'Test action',
-                    ));
-        });
+    $app->render(200, array(
+        'msg' => 'Test action',
+    ));
+});
 
-$app->get('/', function() use ($app) {
+$app->get('/', function () use ($app) {
 
-        $app->render(200,array(
-                'msg' => 'Getting action',
-            ));
-    });
+    $app->render(200, array(
+        'msg' => 'Getting action',
+    ));
+});
 
 
-    function getLogger($name) {
-      $log = new Logger($name);
-      $log->pushHandler(new StreamHandler('./dev.log', Logger::DEBUG));
+function getLogger($name)
+{
+    $log = new Logger($name);
+    $log->pushHandler(new StreamHandler('./dev.log', Logger::DEBUG));
 
-      return $log;
-    }
+    return $log;
+}
 
 $app->run();
 
