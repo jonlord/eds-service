@@ -89,7 +89,7 @@ $app->post('/execute/place/order', function () use ($app) {
 
     $order_array = json_decode($order, true);
 
-    $str_concat = "~" . $order_array['order_number'] . "~" . $order_array['date'] . "~";
+    $str_concat = "~" . $order_array['client'] . "~" . $order_array['order_number'] . "~" . $order_array['date'] . "~";
 
     foreach ($order_array['items'] as $item) {
 
@@ -100,7 +100,7 @@ $app->post('/execute/place/order', function () use ($app) {
 
     }
 
-    $log->addNotice('Init WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa"));
+    $log->addNotice('Init WebOrder with ' . $str_concat . ' at ' . date("Y/m/d h:i:sa") . ' for ' . $order_array['client']);
 
 
     //shell_exec("WebOrder.exe $str_concat");
